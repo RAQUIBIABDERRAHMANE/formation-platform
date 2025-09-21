@@ -244,17 +244,17 @@ const InteractiveDashboard = () => {
         <img
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/image-42ObvHJ6Hj2bldH10cm3uSdvOyJhBa.png"
           alt="Cartoon Rocket"
-          className="w-24 h-24 opacity-40" // increased transparency from 90% to 40%
+          className="w-24 h-24 opacity-10" // increased transparency from 90% to 40%
         />
       </motion.div>
 
       {/* Computer Frame */}
-      <div className="bg-slate-800 rounded-xl p-6 relative overflow-hidden">
+      <div className="bg-slate-800 rounded-xl p-6 relative overflow-hidden ">
         {/* Screen Content */}
         <div className="bg-white rounded-lg p-6 min-h-[500px] relative">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-4">
-              <h3 className="text-xl font-bold text-slate-800">FormationPro</h3>
+              <h3 className="text-xl font-bold text-slate-800 ">FormationPro</h3>
               <div className="flex space-x-2">
                 {["dashboard", "courses", "progress"].map((tab) => (
                   <motion.button
@@ -614,7 +614,7 @@ const HeroSection = () => {
         <img src="/floating-lightbulb.jpg" alt="Ampoule flottante" className="w-full h-full object-contain" />
       </motion.div>
 
-      <div className="container mx-auto px-4 text-center relative z-10">
+      <div className="container mx-auto px-4 text-center relative z-10 mt-12">
         <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
             <span className="text-primary">Formation</span>Pro
@@ -659,7 +659,7 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.div
-          className="mt-16"
+          className="mt-24"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -1005,7 +1005,7 @@ const PricingSection = () => {
       description: "Parfait pour débuter votre apprentissage",
       features: ["Accès à 50+ cours", "Support communautaire", "Certificats de base", "Accès mobile"],
       popular: false,
-      color: "blue",
+      color: "green",
       savings: isAnnual ? "Économisez 20%" : null,
     },
     {
@@ -1021,7 +1021,7 @@ const PricingSection = () => {
         "Mentorat personnalisé",
       ],
       popular: true,
-      color: "purple",
+      color: "green",
       savings: isAnnual ? "Économisez 25%" : null,
     },
     {
@@ -1154,7 +1154,7 @@ const PricingSection = () => {
 
               {plan.savings && (
                 <motion.div
-                  className="absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full"
+                  className="absolute -top-2 -right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full z-20"
                   animate={{ rotate: [0, 5, -5, 0] }}
                   transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                 >
@@ -1210,12 +1210,12 @@ const PricingSection = () => {
 
                   <motion.div className="pt-6" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                     <Button
-                      className={`w-full rounded-2xl py-6 text-lg transition-all ${
+                      className={`w-full rounded-2xl py-6 text-lg font-semibold transition-all ${
                         selectedPlan === index
-                          ? `bg-${plan.color}-600 hover:bg-${plan.color}-700 text-white shadow-lg`
+                          ? `bg-blue-600 hover:bg-blue-800 text-white shadow-lg hover:shadow-xl`
                           : plan.popular
-                            ? "bg-primary hover:bg-primary/90"
-                            : "bg-secondary hover:bg-secondary/80 text-secondary-foreground"
+                            ? "bg-green-600 hover:bg-green-800 text-white shadow-lg hover:shadow-xl"
+                            : "bg-blue-900 hover:bg-black text-white shadow-lg hover:shadow-xl"
                       }`}
                     >
                       <motion.span
