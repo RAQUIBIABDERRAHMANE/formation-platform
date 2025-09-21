@@ -48,6 +48,22 @@ const useTypewriter = (text: string, speed = 50) => {
 
 // Animated particles component
 const AnimatedParticles = () => {
+  const [dimensions, setDimensions] = useState({ width: 1200, height: 800 })
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      })
+    }
+
+    updateDimensions()
+    window.addEventListener('resize', updateDimensions)
+    
+    return () => window.removeEventListener('resize', updateDimensions)
+  }, [])
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {[...Array(20)].map((_, i) => (
@@ -55,12 +71,12 @@ const AnimatedParticles = () => {
           key={i}
           className="absolute w-2 h-2 bg-accent/20 rounded-full"
           initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: Math.random() * dimensions.width,
+            y: Math.random() * dimensions.height,
           }}
           animate={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: Math.random() * dimensions.width,
+            y: Math.random() * dimensions.height,
           }}
           transition={{
             duration: Math.random() * 10 + 10,
@@ -164,6 +180,21 @@ const InteractiveDashboard = () => {
   const [isLiked, setIsLiked] = useState(false)
   const [isBookmarked, setIsBookmarked] = useState(false)
   const [chartData, setChartData] = useState([20, 45, 30, 60, 80, 65, 90])
+  const [windowDimensions, setWindowDimensions] = useState({ width: 1200, height: 800 })
+
+  useEffect(() => {
+    const updateWindowDimensions = () => {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      })
+    }
+
+    updateWindowDimensions()
+    window.addEventListener('resize', updateWindowDimensions)
+    
+    return () => window.removeEventListener('resize', updateWindowDimensions)
+  }, [])
 
   useEffect(() => {
     const progressInterval = setInterval(() => {
@@ -196,12 +227,12 @@ const InteractiveDashboard = () => {
   }
 
   return (
-    <div className="relative mx-auto rounded-2xl shadow-2xl max-w-4xl w-full bg-slate-900 p-4">
+    <div className="relative mx-auto rounded-2xl shadow-2xl max-w-4xl w-full bg-slate-900 p-4 opacity-90">
       <motion.div
-        className="absolute -z-10 left-0 top-1/2"
+        className="absolute -z-10 left-0 top-1/2 opacity-90"
         animate={{
-          y: [-window.innerHeight / 2, -window.innerHeight - 200],
-          x: [0, window.innerWidth],
+          y: [-windowDimensions.height / 2, -windowDimensions.height - 200],
+          x: [0, windowDimensions.width],
           rotate: [0, 15, 10],
         }}
         transition={{
@@ -213,7 +244,7 @@ const InteractiveDashboard = () => {
         <img
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/image-42ObvHJ6Hj2bldH10cm3uSdvOyJhBa.png"
           alt="Cartoon Rocket"
-          className="w-24 h-24 opacity-90" // increased opacity from 75% to 90% for more transparency
+          className="w-24 h-24 opacity-40" // increased transparency from 90% to 40%
         />
       </motion.div>
 
@@ -642,7 +673,7 @@ const HeroSection = () => {
 
 // Features section
 const FeaturesSection = () => {
-  const [hoveredFeature, setHoveredFeature] = useState(null)
+  const [hoveredFeature, setHoveredFeature] = useState<number | null>(null)
 
   const features = [
     {
